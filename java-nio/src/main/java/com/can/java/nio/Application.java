@@ -3,6 +3,7 @@ package com.can.java.nio;
 import com.can.java.nio.util.FileUtil;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 /**
  * <pre>
@@ -15,13 +16,12 @@ import java.io.IOException;
 public class Application {
 
 	public static void main(String[] args) {
-		System.out.println("OK");
 		test();
 	}
 
 	private static void test() {
 
-		String fileName = "C:\\Users\\lcn\\Desktop\\log.log";
+		String fileName = "C:\\Users\\lcn\\Desktop\\test.log";
 
 		try {
 			FileUtil.readFile(fileName, (dataByte) -> {
@@ -29,10 +29,11 @@ public class Application {
 				System.out.println(dataString);
 				return true;
 			});
+
+			FileUtil.writeSimpleFile(fileName, "写入文件".getBytes(StandardCharsets.UTF_8));
 		} catch (IOException exception) {
 			System.out.println("异常" + exception.getMessage());
 		}
-
 
 	}
 }
